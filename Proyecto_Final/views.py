@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
-from .models import Curso, Estudiante, Profesor
+from .models import Carreras, Corredores
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 
@@ -11,98 +11,66 @@ def home(request):
     return render(request, 'Proyecto_Final/index.html')
 
 
-class ListadoCursos(ListView):
-    model = Curso
-    template_name = 'Proyecto_Final/listar_curso.html'
+class ListadoCarreras(ListView):
+    model = Carreras
+    template_name = 'Proyecto_Final/listar_carreras.html'
 
 
-class CrearCurso(CreateView):
-    model = Curso
-    template_name = 'Proyecto_Final/crear_curso.html'
-    success_url = reverse_lazy('listado_cursos')
+class CrearCarreras (LoginRequiredMixin,CreateView,PermissionRequiredMixin):
+    model = Carreras
+    template_name = 'Proyecto_Final/crear_carreras.html'
+    success_url = reverse_lazy('crear_carreras')
     fields = '__all__'
 
 
-class EditarCurso(UpdateView):
-    model = Curso
-    template_name = 'Proyecto_Final/editar_curso.html'
+class EditarCarreras(UpdateView):
+    model = Carreras
+    template_name = 'Proyecto_Final/editar_carreras.html'
     fields = '__all__'
 
     def get_success_url(self) -> str:
-        return reverse_lazy('mostrar_curso', kwargs={'pk':self.object.pk})
+        return reverse_lazy('mostrar_carreras', kwargs={'pk':self.object.pk})
 
 
-class EliminarCurso(DeleteView):
-    model = Curso
-    template_name = 'Proyecto_Final/eliminar_curso.html'
-    success_url = reverse_lazy('listado_cursos')
+class EliminarCarreras(DeleteView):
+    model = Carreras
+    template_name = 'Proyecto_Final/eliminar_carreras.html'
+    success_url = reverse_lazy('listado_carreras')
 
-class MostrarCurso(DetailView):
-    model = Curso
-    template_name = 'Proyecto_Final/mostrar_curso.html'
+class MostrarCarreras(DetailView):
+    model = Carreras
+    template_name = 'Proyecto_Final/mostrar_carreras.html'
 
-class ListadoEstudiantes(LoginRequiredMixin, ListView):
-    model = Estudiante
-    template_name = 'Proyecto_Final/listar_estudiante.html'
+class ListadoCorredores(LoginRequiredMixin, ListView):
+    model = Corredores
+    template_name = 'Proyecto_Final/listar_corredores.html'
 
 
-class CrearEstudiante(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    model = Estudiante
-    permission_required = "estudiante.add_estudiante"
-    template_name = 'Proyecto_Final/crear_estudiante.html'
-    success_url = reverse_lazy('listado_estudiantes')
+class CrearCorredores(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = Corredores
+    permission_required = "corredor.add_corredor"
+    template_name = 'Proyecto_Final/crear_corredores.html'
+    success_url = reverse_lazy('listado_corredores')
     fields = '__all__'
 
 
-class EditarEstudiante(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    model = Estudiante
-    permission_required = "estudiante.change_estudiante"
-    template_name = 'Proyecto_Final/editar_estudiante.html'
+class EditarCorredores(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = Corredores
+    permission_required = "corredor.change_corredor"
+    template_name = 'Proyecto_Final/editar_corredores.html'
     fields = '__all__'
 
 def get_success_url(self) -> str:
-    return reverse_lazy('mostrar_estudiante', kwargs={'pk':self.object.pk})
+    return reverse_lazy('mostrar_ecorredores', kwargs={'pk':self.object.pk})
 
 
-class EliminarEstudiante(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-    model = Estudiante
-    permission_required = "estudiante.delete_estudiante"
-    template_name = 'Proyecto_Final/eliminar_estudiante.html'
-    success_url = reverse_lazy('listado_estudiantes')
+class EliminarCorredores(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = Corredores
+    permission_required = "corredor.delete_corredor"
+    template_name = 'Proyecto_Final/eliminar_corredores.html'
+    success_url = reverse_lazy('listado_corredores')
 
-class MostrarEstudiante(LoginRequiredMixin, DetailView):
-    model = Estudiante
-    template_name = 'Proyecto_Final/mostrar_estudiante.html'
-
-class ListadoProfesores(ListView):
-    model = Profesor
-    template_name = 'Proyecto_Final/listar_profesor.html'
-
-
-class CrearProfesor(CreateView):
-    model = Profesor
-    template_name = 'Proyecto_Final/crear_profesor.html'
-    success_url = reverse_lazy('listado_profesores')
-    fields = '__all__'
-
-
-class EditarProfesor(UpdateView):
-    model = Profesor
-    template_name = 'Proyecto_Final/editar_profesor.html'
-    fields = '__all__'
-
-    def get_success_url(self) -> str:
-        return reverse_lazy('mostrar_profesor', kwargs={'pk':self.object.pk})
-
-
-class EliminarProfesor(DeleteView):
-    model = Profesor
-    template_name = 'Proyecto_Final/eliminar_profesor.html'
-    success_url = reverse_lazy('listado_profesores')
-
-class MostrarProfesor(DetailView):
-    model = Profesor
-    template_name = 'Proyecto_Final/mostrar_profesor.html'
-
-
+class MostrarCorredores(LoginRequiredMixin, DetailView):
+    model = Corredores
+    template_name = 'Proyecto_Final/mostrar_corredores.html'
 

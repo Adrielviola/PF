@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Curso {% endblock title %}
+{% block title %} Estudiante {% endblock title %}
 
 {% block main %}
     <div>
-        <a href="{% url 'listado_cursos' %}" class="m-2 btn btn-primary">Listar cursos</a>
+        <a href="{% url 'listado_corredores' %}" class="m-2 btn btn-primary">Listar corredores</a>
     </div>
-    {% if curso %}
+    {% if corredor %}
         <div class="row">
             <div class="card m-2" style="width: 18rem;" >
                 <div class="card-body">
-                <h5 class="card-title">{{ curso.nombre }}</h5>
-                <p class="card-text">Camada: {{ curso.camada }}</p>
+                <h5 class="card-title">{{ corredor.nombre }} {{ corredor.apellido }}</h5>
+                <p class="card-text">email: {{ corredor.email }}</p>
                 </div>
             </div>
         </div>

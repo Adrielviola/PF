@@ -37,7 +37,7 @@ class EliminarCarreras(DeleteView):
     template_name = 'Proyecto_Final/eliminar_carreras.html'
     success_url = reverse_lazy('listado_carreras')
 
-class MostrarCarreras(DetailView):
+class MostrarCarreras(ListView):
     model = Carreras
     template_name = 'Proyecto_Final/mostrar_carreras.html'
 

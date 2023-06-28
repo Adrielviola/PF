@@ -33,8 +33,7 @@
                         {% if user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'listado_corredores' %}">Listado corredores</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'crear_carreras' %}">Crear Carreras</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'crear_corredores' %}">Registro</a></li> 
-                            {% endif %}
+                        {% endif %}
                         
                         {% if request.user.is_authenticated %}
                             <a class="navbar-brand" href="{% url 'mostrar_perfil' %}">

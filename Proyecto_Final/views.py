@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
-from models import Curso, Estudiante, Profesor,
+from .models import Curso, Estudiante, Profesor
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 

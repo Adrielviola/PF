@@ -13,7 +13,7 @@ def home(request):
 
 class ListadoCarreras(ListView):
     model = Carreras
-    template_name = 'Proyecto_Final/listar_carreras.html'
+    template_name = 'Proyecto_Final/listado_carreras.html'
 
 
 class CrearCarreras (LoginRequiredMixin,CreateView,PermissionRequiredMixin):
